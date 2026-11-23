@@ -1,0 +1,14 @@
+import { openTab, sleep } from "./cdp.mjs";
+const [url, out, w, h, dark] = process.argv.slice(2);
+const tab = await openTab();
+await tab.viewport(Number(w), Number(h), 1, dark === "dark");
+await tab.goto(url);
+await sleep(1500);
+await tab.eval(`document.querySelectorAll('.reveal').forEach(e => e.classList.add('in')); window.scrollTo(0, 0); true`);
+await sleep(1200);
+const height = await tab.eval(`document.documentElement.scrollHeight`);
+await tab.send("Emulation.setDeviceMetricsOverride", { width: Number(w), height, deviceScaleFactor: 1, mobile: Number(w) < 600 });
+await sleep(800);
+await tab.shot(out, { format: "jpeg", quality: 70 });
+console.log("height", height);
+await tab.close();

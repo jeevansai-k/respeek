@@ -1,0 +1,81 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Respeek",
+  "version": "0.1.0",
+  "identifier": "io.respeek.Respeek",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../ui/dist"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "windows": [
+      {
+        "label": "main",
+        "title": "Respeek",
+        "width": 1180,
+        "height": 760,
+        "minWidth": 720,
+        "minHeight": 480,
+        "decorations": false,
+        "transparent": true,
+        "shadow": true,
+        "resizable": true,
+        "visible": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' asset: http://asset.localhost data: blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; connect-src ipc: http://ipc.localhost",
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "/usr/share/**",
+          "/usr/local/share/**",
+          "/var/lib/flatpak/**",
+          "$HOME/.local/share/**",
+          "$HOME/.cache/respeek/**",
+          "/var/lib/snapd/**",
+          "/snap/**",
+          "/opt/**"
+        ]
+      }
+    },
+    "enableGTKAppId": true
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "deb",
+      "appimage"
+    ],
+    "category": "Utility",
+    "shortDescription": "A fluid system monitor",
+    "longDescription": "Respeek monitors CPU, memory, disks, network, GPUs, fans and batteries, and lets you manage apps, processes and services.",
+    "copyright": "GPL-3.0-or-later. Based on Mission Center.",
+    "license": "GPL-3.0-or-later",
+    "icon": [
+      "icons/32x32.png",
+      "icons/64x64.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.png"
+    ],
+    "externalBin": [
+      "binaries/respeek-magpie"
+    ],
+    "linux": {
+      "deb": {
+        "depends": [],
+        "desktopTemplate": "respeek.desktop"
+      },
+      "appimage": {
+        "bundleMediaFramework": false
+      }
+    },
+    "resources": [
+      "resources/hw.db"
+    ]
+  }
+}

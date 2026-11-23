@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories={{categories}}
+Comment={{comment}}
+Exec={{exec}}
+StartupWMClass=io.respeek.Respeek
+Icon={{icon}}
+Name={{name}}
+Terminal=false
+Type=Application
+Keywords=system;monitor;task;manager;cpu;memory;process;
+StartupNotify=true

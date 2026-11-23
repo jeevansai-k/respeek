@@ -1,0 +1,10 @@
+/target
+/node_modules
+/ui/dist
+/src-tauri/gen
+/src-tauri/binaries/*
+!/src-tauri/binaries/.gitkeep
+/src-tauri/resources/hw.db
+/brag-output
+/site/assets/respeek-launch.mp4
+/site/assets/respeek-launch-poster.jpg

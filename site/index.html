@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Respeek — See everything your computer is doing</title>
+  <meta name="description" content="Respeek is a fluid, glass-clear system monitor for Linux. Live CPU, memory, disks, network, GPUs, fans and batteries, plus apps, processes and services — on a Rust core." />
+  <meta property="og:title" content="Respeek — a fluid system monitor for Linux" />
+  <meta property="og:description" content="Live performance, apps and services in a glass-and-spring interface. Rust core, 60 fps, open source." />
+  <meta property="og:image" content="assets/shots/overview-dark.webp" />
+  <meta name="theme-color" content="#07080d" />
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Glass navigation: content scrolls underneath, edge fades in only once scrolled. -->
+  <header class="nav" id="nav">
+    <a class="nav-brand" href="#top" aria-label="Respeek home">
+      <img src="assets/icon.svg" alt="" width="28" height="28" />
+      <span>Respeek</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#film">Film</a>
+      <a href="#features">Features</a>
+      <a href="#design">Design</a>
+      <a href="#performance">Performance</a>
+      <a href="#core">Under the hood</a>
+    </nav>
+    <a class="btn btn-small btn-filled" href="#download">Download</a>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <img class="hero-icon reveal" src="assets/icon.svg" alt="Respeek app icon" width="132" height="132" />
+      <h1 class="hero-title reveal" style="--d: 60ms">Respeek</h1>
+      <p class="hero-lede reveal" style="--d: 120ms">See everything your computer is doing.<br /><span class="grad">Beautifully.</span></p>
+      <p class="hero-sub reveal" style="--d: 180ms">A fluid, glass-clear system monitor for Linux. CPU, memory, disks, network, GPUs, fans and batteries — plus every app, process and service — in an interface that moves like it means it.</p>
+      <div class="hero-cta reveal" style="--d: 240ms">
+        <a class="btn btn-filled" href="#download">Download for Linux</a>
+        <a class="btn btn-glass" href="https://github.com/jeevansai-k/respeek">View on GitHub <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="hero-meta reveal" style="--d: 300ms">Free and open source · GPL-3.0 · .deb and AppImage</p>
+
+      <div class="stage" id="hero-stage">
+        <figure class="window-frame" id="hero-window">
+          <picture>
+            <source srcset="assets/shots/overview-light.webp" media="(prefers-color-scheme: light)" />
+            <img src="assets/shots/overview-dark.webp" alt="Respeek Overview: live graphs for CPU, memory, disk, Wi‑Fi, GPU, fan and battery" width="1440" height="900" fetchpriority="high" />
+          </picture>
+        </figure>
+      </div>
+    </section>
+
+    <!-- LAUNCH VIDEO -->
+    <section class="section film" id="film">
+      <div class="film-frame reveal">
+        <video src="assets/respeek-launch.mp4" poster="assets/respeek-launch-poster.jpg" controls playsinline preload="metadata"></video>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats" id="performance">
+      <div class="stat reveal"><span class="stat-num" data-count="60">60</span><span class="stat-unit">fps</span><p>Page transitions measured frame-by-frame in the real window.</p></div>
+      <div class="stat reveal" style="--d: 80ms"><span class="stat-num">≈1</span><span class="stat-unit">%</span><p>CPU for the Rust shell at idle, measured on a 1-second refresh.</p></div>
+      <div class="stat reveal" style="--d: 160ms"><span class="stat-num" data-count="100">100</span><span class="stat-unit">%</span><p>Of the logic in Rust. The interface only draws what the core sends.</p></div>
+      <div class="stat reveal" style="--d: 240ms"><span class="stat-num" data-count="0">0</span><span class="stat-unit">telemetry</span><p>Nothing leaves your machine. Ever.</p></div>
+    </section>
+
+    <!-- FEATURES BENTO -->
+    <section class="section" id="features">
+      <header class="section-head reveal">
+        <p class="eyebrow">Everything, at a glance</p>
+        <h2>Your whole machine.<br />One calm window.</h2>
+      </header>
+
+      <div class="bento">
+        <article class="tile tile-wide reveal">
+          <div class="tile-copy">
+            <h3>Performance that breathes.</h3>
+            <p>Graphs glide between samples on the GPU instead of ticking. Overall or per‑core CPU, kernel time, clocks, caches, temperatures and power draw.</p>
+          </div>
+          <img loading="lazy" src="assets/shots/cpu-dark.webp" alt="CPU page with per-core graphs" />
+        </article>
+
+        <article class="tile reveal" style="--d: 60ms">
+          <div class="tile-copy">
+            <h3>Every app. Every process.</h3>
+            <p>Apps grouped with their processes, heat-tinted columns, instant search, and a floating action bar to suspend, resume or quit.</p>
+          </div>
+          <img loading="lazy" src="assets/shots/apps-dark.webp" alt="Apps and processes table" />
+        </article>
+
+        <article class="tile reveal" style="--d: 120ms">
+          <div class="tile-copy">
+            <h3>Services, tamed.</h3>
+            <p>Start, stop, restart, enable or disable systemd services — and read their logs — without a terminal.</p>
+          </div>
+          <img loading="lazy" src="assets/shots/services-light.webp" alt="Services list" />
+        </article>
+
+        <article class="tile reveal">
+          <div class="tile-copy">
+            <h3>Memory, explained.</h3>
+            <p>See what's in use, modified, on standby and free — and which modules sit in which slots.</p>
+          </div>
+          <img loading="lazy" src="assets/shots/memory-light.webp" alt="Memory composition" />
+        </article>
+
+        <article class="tile reveal" style="--d: 60ms">
+          <div class="tile-copy">
+            <h3>GPUs, all of them.</h3>
+            <p>Integrated and discrete. Utilization, VRAM, encoders, clocks, power, PCIe link and API versions.</p>
+          </div>
+          <img loading="lazy" src="assets/shots/gpu-dark.webp" alt="GPU page" />
+        </article>
+
+        <article class="tile tile-wide reveal">
+          <div class="tile-copy">
+            <h3>Yours to arrange.</h3>
+            <p>Light or dark, six accents, reduce transparency, units in bits or bytes, base 2 or 10. Drag devices to reorder the sidebar.</p>
+          </div>
+          <img loading="lazy" src="assets/shots/preferences-dark.webp" alt="Preferences sheet" />
+        </article>
+      </div>
+    </section>
+
+    <!-- DESIGN: draggable light/dark comparison -->
+    <section class="section" id="design">
+      <header class="section-head reveal">
+        <p class="eyebrow">Designed to disappear</p>
+        <h2>Glass, springs,<br />and nothing in the way.</h2>
+        <p class="section-sub">Translucent materials over a soft colour field that follows the device you're looking at. Critically damped springs everywhere. Drag the divider — it follows your hand, carries your momentum, and resists at the edges.</p>
+      </header>
+
+      <div class="compare reveal" id="compare" style="--pos: 50%">
+        <img class="compare-img compare-dark" src="assets/shots/overview-dark.webp" alt="Respeek in dark mode" draggable="false" />
+        <img class="compare-img compare-light" src="assets/shots/overview-light.webp" alt="Respeek in light mode" draggable="false" />
+        <div class="compare-handle" role="slider" tabindex="0" aria-label="Compare light and dark appearance" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <span class="compare-grip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l-5 6 5 6M15 6l5 6-5 6" /></svg></span>
+        </div>
+        <span class="compare-label left">Light</span>
+        <span class="compare-label right">Dark</span>
+      </div>
+
+      <div class="principles">
+        <div class="principle reveal"><h4>Responds on press</h4><p>Feedback starts on pointer-down. Nothing waits for a click to finish.</p></div>
+        <div class="principle reveal" style="--d: 60ms"><h4>Interruptible</h4><p>Every transition can be redirected mid-flight. Pages rise; the old one simply fades.</p></div>
+        <div class="principle reveal" style="--d: 120ms"><h4>Honest materials</h4><p>Blur only where layers truly overlap. Solid fallbacks when you ask for less transparency.</p></div>
+        <div class="principle reveal" style="--d: 180ms"><h4>Accessible motion</h4><p>Reduced motion swaps slides for cross-fades. High contrast gets real borders.</p></div>
+      </div>
+    </section>
+
+    <!-- CORE -->
+    <section class="section" id="core">
+      <header class="section-head reveal">
+        <p class="eyebrow">Under the hood</p>
+        <h2>A Rust core you can trust.</h2>
+        <p class="section-sub">Respeek keeps Mission Center's battle-tested gatherer and client, then moves every decision — sorting, search, units, the app tree — into one Rust crate. The interface just renders.</p>
+      </header>
+      <ol class="pipeline">
+        <li class="reveal"><span class="pipe-tag">Gatherer</span><h4>Magpie</h4><p>Reads /proc, sysfs, udisks, NVML and systemd. Smart polling: expensive sensors back off when they're off-screen.</p></li>
+        <li class="reveal" style="--d: 80ms"><span class="pipe-tag">Core</span><h4>respeek-core</h4><p>Sampler, history, formatting, the app/process tree, search and sort — tested and typed.</p></li>
+        <li class="reveal" style="--d: 160ms"><span class="pipe-tag">Shell</span><h4>Tauri 2</h4><p>A thin bridge. Commands run off the UI thread; snapshots stream over one channel.</p></li>
+        <li class="reveal" style="--d: 240ms"><span class="pipe-tag">Interface</span><h4>React + Motion</h4><p>Glass, springs and GPU-slid canvases. No data processing, ever.</p></li>
+      </ol>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section class="section download" id="download">
+      <div class="download-card reveal">
+        <img src="assets/icon.svg" alt="" width="96" height="96" />
+        <h2>Get Respeek.</h2>
+        <p class="section-sub">.deb for Ubuntu, Pop!_OS and Debian · AppImage for any x86-64 Linux.</p>
+        <div class="hero-cta">
+          <a class="btn btn-filled" href="https://github.com/jeevansai-k/respeek/releases/latest">Download .deb</a>
+          <a class="btn btn-glass" href="https://github.com/jeevansai-k/respeek/releases/latest">Download AppImage</a>
+        </div>
+        <div class="code-block">
+          <div class="code-head"><span>Build from source</span><button class="copy" data-copy="#src-cmd" type="button">Copy</button></div>
+<pre id="src-cmd"><code>git clone --recursive https://github.com/jeevansai-k/respeek
+cd respeek && npm install
+./scripts/build-magpie.sh
+cargo tauri build</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand"><img src="assets/icon.svg" alt="" width="22" height="22" /> Respeek</div>
+    <p>Free software under the GNU GPL v3 or later. Built on the Rust core of <a href="https://gitlab.com/mission-center-devs/mission-center">Mission Center</a> by the Mission Center developers.</p>
+    <p><a href="https://github.com/jeevansai-k/respeek">GitHub</a> · <a href="https://github.com/jeevansai-k/respeek/releases">Releases</a> · <a href="https://github.com/jeevansai-k/respeek/issues">Issues</a></p>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>

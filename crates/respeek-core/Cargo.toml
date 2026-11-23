@@ -1,0 +1,26 @@
+[package]
+name = "respeek-core"
+description = "Respeek system-monitor core: Magpie client, sampling, models and all app logic"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+arrayvec = "0.7"
+log = "0.4"
+nng-c = "1.12"
+rand = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.9"
+base64 = "0.22"
+freedesktop-icons = "0.4"
+env_logger = "0.11"
+
+[dependencies.nng-c-sys]
+version = "1.12"
+default-features = false
+
+[dependencies.magpie-types]
+path = "../../vendor/magpie/types"
+
