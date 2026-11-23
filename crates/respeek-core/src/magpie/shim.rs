@@ -1,7 +1,6 @@
 /* magpie/shim.rs
  *
  * Copyright 2026 Respeek contributors
- * Derived from Mission Center (Copyright 2026 Mission Center Developers)
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
@@ -22,18 +21,10 @@ macro_rules! g_warning {
 macro_rules! g_debug {
     ($domain:expr, $($arg:tt)*) => { ::log::debug!(target: $domain, $($arg)*) };
 }
-macro_rules! cmd_flatpak_host {
-    ($cmd: expr) => {{
-        let mut cmd = std::process::Command::new("/usr/bin/flatpak-spawn");
-        cmd.arg("--host").arg("sh").arg("-c");
-        cmd.arg($cmd);
-        cmd
-    }};
-}
 
 #[allow(unused_imports)]
 #[allow(unused_macros)]
-pub(crate) use {cmd_flatpak_host, g_critical, g_debug, g_warning};
+pub(crate) use {g_critical, g_debug, g_warning};
 
 /// Env var to override the Magpie binary location.
 pub const ENV_MAGPIE_PATH: &str = "RESPEEK_MAGPIE_PATH";
@@ -41,10 +32,6 @@ pub const ENV_MAGPIE_PATH: &str = "RESPEEK_MAGPIE_PATH";
 /// Respeek is shipped natively (deb/AppImage), never as a Flatpak.
 pub fn is_flatpak() -> bool {
     false
-}
-
-pub fn flatpak_app_path() -> &'static str {
-    ""
 }
 
 pub fn flatpak_data_dir() -> &'static Path {
@@ -55,7 +42,7 @@ pub fn flatpak_data_dir() -> &'static Path {
 /// Locate the Magpie gatherer:
 /// 1. `$RESPEEK_MAGPIE_PATH`
 /// 2. `respeek-magpie` next to the running executable (Tauri sidecar layout)
-/// 3. `respeek-magpie` / `missioncenter-magpie` on `$PATH`
+/// 3. `respeek-magpie` on `$PATH`
 pub fn magpie_executable() -> String {
     if let Ok(p) = std::env::var(ENV_MAGPIE_PATH) {
         return p;
@@ -63,19 +50,15 @@ pub fn magpie_executable() -> String {
 
     if let Ok(exe) = std::env::current_exe() {
         if let Some(dir) = exe.parent() {
-            for name in ["respeek-magpie", "missioncenter-magpie"] {
-                let candidate = dir.join(name);
-                if candidate.exists() {
-                    return candidate.to_string_lossy().into_owned();
-                }
+            let candidate = dir.join("respeek-magpie");
+            if candidate.exists() {
+                return candidate.to_string_lossy().into_owned();
             }
         }
     }
 
-    for name in ["respeek-magpie", "missioncenter-magpie"] {
-        if let Ok(path) = which(name) {
-            return path;
-        }
+    if let Ok(path) = which("respeek-magpie") {
+        return path;
     }
 
     "respeek-magpie".to_owned()

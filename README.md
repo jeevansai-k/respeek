@@ -58,7 +58,7 @@ A fluid, glass-clear system monitor with Apple-grade motion, built on a Rust cor
 
 Most system monitors make you choose: **accurate** or **pleasant**. Respeek refuses to.
 
-It keeps the battle-tested data engine of [Mission Center](https://gitlab.com/mission-center-devs/mission-center) — the **Magpie** gatherer and its client, both in Rust — and puts a new interface on top that behaves like it belongs on a modern desktop:
+Under the hood, a battle-tested Rust data engine — the **Magpie** gatherer and its client — feeds a new interface that behaves like it belongs on a modern desktop:
 
 | | |
 |---|---|
@@ -87,7 +87,7 @@ It keeps the battle-tested data engine of [Mission Center](https://gitlab.com/mi
   </tr>
 </table>
 
-**Everything Mission Center does, rebuilt:**
+**What's inside:**
 
 - **Performance** — CPU (overall / per-core, kernel times), memory & swap with composition, disks (active time, throughput, partitions, **S.M.A.R.T.**, **eject**), network (Wi-Fi details, addresses, dynamic scaling), GPUs, fans, batteries, plus an **Overview** of everything.
 - **Apps & processes** — app → process tree or flat list, column chooser, sort, search, details sheet, suspend / resume / end / force quit / signals, with a macOS-style *Quit · Force Quit · Cancel* confirmation.
@@ -198,7 +198,7 @@ flowchart LR
 
 | Layer | Path | Responsibility |
 |---|---|---|
-| Gatherer | [`vendor/magpie`](vendor/magpie) | Mission Center's collector, unchanged (git submodule), shipped as a sidecar binary. |
+| Gatherer | [`vendor/magpie`](vendor/magpie) | The Magpie collector (git submodule), shipped as a sidecar binary. |
 | Core | [`crates/respeek-core`](crates/respeek-core) | **All logic**: client port, sampler & cadence, history, units, the app/process tree, search/sort, settings, every view-model. |
 | Shell | [`src-tauri`](src-tauri) | Thin Tauri 2 bridge. Commands run off the UI thread; snapshots stream over one channel. |
 | Interface | [`ui`](ui) | React + Motion. Renders view-models, sends intents — **no data processing**. |
@@ -213,7 +213,7 @@ respeek/
 │   └── src/{magpie/,engine,readings,devices,tables,details,model,units,settings,history,icons}.rs
 ├── src-tauri/               # Tauri shell, icons, desktop template, capabilities
 ├── ui/                      # React UI (src/components, pages, sheets, styles, dev/mock)
-├── vendor/magpie/           # Mission Center gatherer (submodule)
+├── vendor/magpie/           # Magpie gatherer (submodule)
 ├── scripts/                 # build-magpie.sh, install-local.sh, media tooling
 ├── site/                    # GitHub Pages website
 ├── branding/                # App icon source (SVG)
@@ -324,7 +324,7 @@ Magpie fills systemd properties asynchronously; they populate within a few refre
 - [ ] Flatpak packaging
 - [ ] Per-process GPU usage in the Apps table
 - [ ] Mini "summary" floating window
-- [ ] Localization (Mission Center's translations)
+- [ ] Localization
 - [ ] ARM64 builds
 
 ---
@@ -339,7 +339,7 @@ Issues and pull requests are welcome. Keep logic in `respeek-core` (the UI must 
 
 Respeek is free software released under the **GNU General Public License v3.0 or later** — see [`COPYING`](COPYING).
 
-Built on the Rust core of **[Mission Center](https://gitlab.com/mission-center-devs/mission-center)** — the Magpie gatherer and client — by the Mission Center developers. Thank you.
+Third-party GPL components keep their original copyright notices in their source files.
 
 <div align="center">
 <br />

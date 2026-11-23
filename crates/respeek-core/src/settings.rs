@@ -1,4 +1,4 @@
-/* settings.rs — persisted preferences (mirrors Mission Center's GSettings schema).
+/* settings.rs — persisted preferences.
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */

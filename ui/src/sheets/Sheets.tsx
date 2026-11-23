@@ -211,10 +211,7 @@ function AboutSheet() {
   return (
     <Sheet width={420} title="Respeek" subtitle="Version 0.1.0" icon={<img src={logo} width={44} height={44} alt="" />}>
       <p className="about-text">A fluid, glass-clear system monitor for Linux.</p>
-      <p className="about-text muted">
-        Respeek is built on the Rust core of <strong>Mission Center</strong> (Magpie gatherer and client) by the
-        Mission Center developers, with a new interface. Licensed under the GNU GPL v3 or later.
-      </p>
+      <p className="about-text muted">Free software licensed under the GNU GPL v3 or later.</p>
     </Sheet>
   );
 }

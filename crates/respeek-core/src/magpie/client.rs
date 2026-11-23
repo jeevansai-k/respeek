@@ -193,73 +193,9 @@ fn random_string<const CAP: usize>() -> ArrayString<CAP> {
 }
 
 fn magpie_command(socket_addr: &str) -> std::process::Command {
-    fn executable() -> String {
-        
-
-        let exe_simple = magpie_executable();
-
-        if is_flatpak() {
-            let flatpak_app_path = flatpak_app_path();
-
-            let cmd_glibc_status = cmd_flatpak_host!(&format!(
-                "{}/bin/missioncenter-magpie-glibc --test",
-                flatpak_app_path
-            ))
-            .status()
-            .is_ok_and(|exit_status| exit_status.success());
-            if cmd_glibc_status {
-                let exe_glibc = format!("{}/bin/missioncenter-magpie-glibc", flatpak_app_path);
-                g_debug!(
-                    "Respeek::Gatherer",
-                    "Magpie executable name: {}",
-                    &exe_glibc
-                );
-                return exe_glibc;
-            }
-
-            let cmd_musl_status = cmd_flatpak_host!(&format!(
-                "{}/bin/missioncenter-magpie-musl --test",
-                flatpak_app_path
-            ))
-            .status()
-            .is_ok_and(|exit_status| exit_status.success());
-            if cmd_musl_status {
-                let exe_musl = format!("{}/bin/missioncenter-magpie-musl", flatpak_app_path);
-                g_debug!(
-                    "Respeek::Gatherer",
-                    "Magpie executable name: {}",
-                    &exe_musl
-                );
-                return exe_musl;
-            }
-        }
-
-        g_debug!(
-            "Respeek::Gatherer",
-            "Magpie executable name: {}",
-            &exe_simple
-        );
-
-        exe_simple
-    }
-
-    let mut command = if is_flatpak() {
-        let mut cmd = std::process::Command::new("/app/bin/missioncenter-spawner");
-        cmd.arg("-v")
-            .arg("--env=LD_PRELOAD=")
-            .arg(format!(
-                "--env=MC_MAGPIE_HW_DB={}/share/missioncenter/hw.db",
-                flatpak_app_path()
-            ))
-            .arg(format!(
-                "--env=RUST_LOG={}",
-                std::env::var("RUST_LOG").unwrap_or_default()
-            ))
-            .arg(executable());
-        cmd
-    } else {
-        std::process::Command::new(executable())
-    };
+    let exe = magpie_executable();
+    g_debug!("Respeek::Gatherer", "Magpie executable name: {}", &exe);
+    let mut command = std::process::Command::new(exe);
 
     command
         .env_remove("LD_PRELOAD")

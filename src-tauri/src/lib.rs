@@ -194,7 +194,6 @@ fn locate_hw_db() {
     if cfg!(debug_assertions) {
         candidates.push(std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("resources/hw.db"));
     }
-    candidates.push("/usr/share/missioncenter/hw.db".into());
     if let Some(found) = candidates.into_iter().find(|p| p.exists()) {
         std::env::set_var("MC_MAGPIE_HW_DB", found);
     }

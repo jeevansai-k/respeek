@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the Magpie gatherer (Mission Center's Rust core) as Respeek's Tauri sidecar,
+# Build the Magpie gatherer as Respeek's Tauri sidecar,
 # plus the hardware-name database it reads.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

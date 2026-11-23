@@ -1,7 +1,5 @@
 /* tables.rs — Apps and Services tables: tree building, search, sort, flatten, selection.
  *
- * Port of Mission Center's table_view/models.rs + apps_page logic.
- *
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 

@@ -53,7 +53,7 @@
     "category": "Utility",
     "shortDescription": "A fluid system monitor",
     "longDescription": "Respeek monitors CPU, memory, disks, network, GPUs, fans and batteries, and lets you manage apps, processes and services.",
-    "copyright": "GPL-3.0-or-later. Based on Mission Center.",
+    "copyright": "GPL-3.0-or-later",
     "license": "GPL-3.0-or-later",
     "icon": [
       "icons/32x32.png",
